@@ -13,10 +13,10 @@ This implementation is a console simulation of those responsibilities.
 ```mermaid
 classDiagram
     class Main {
-        +main(String[] args)$ void
+        +main(String[] args) void$
     }
     class HomeTheaterFacade {
-        -MOVIE_VOLUME : int
+        -int MOVIE_VOLUME$
         -dvdPlayer : DvdPlayer
         -amplifier : Amplifier
         -projector : Projector
@@ -93,7 +93,8 @@ projection rules. Changes to a component's internal rules belong in that compone
 
 ```java
 private final DvdPlayer dvdPlayer = new DvdPlayer(); // Hidden implementation.
-public void watchMovie(String title) {              // Only a title is needed.
+// The client only supplies the movie title:
+theater.watchMovie("Interstellar");
 ```
 
 The public API offers only `watchMovie(String)` and `endMovie()`.
@@ -119,8 +120,14 @@ short and focused, and source readiness is queried rather than copied into the o
 if (title == null || title.isBlank()) {
     throw new IllegalArgumentException("Movie title must not be blank.");
 }
-// During coordinated startup:
-catch (RuntimeException failure) {
+```
+
+During coordinated startup, the facade handles subsystem failures:
+
+```java
+try {
+    // Power on and configure devices, then start playback and outputs.
+} catch (RuntimeException failure) {
     endMovie(); // Reset all components after a partial startup.
     throw new IllegalStateException("Unable to start the home theater.", failure);
 }
