@@ -1,4 +1,4 @@
- public class HomeTheaterFacade {
+public class HomeTheaterFacade {
     private static final int MOVIE_VOLUME = 5;
     private final DvdPlayer dvdPlayer = new DvdPlayer();
     private final Amplifier amplifier = new Amplifier();
