@@ -22,6 +22,6 @@ Subsystem classes remain independently usable.
 - `Amplifier.java`, `DvdPlayer.java`, `Projector.java`: subsystem classes.
 - `HomeTheaterFacade.java`: coordination and simplified API.
 - `Main.java`: client and live demonstration.
-- `Report.md`: introduction, UML, five annotated Clean Code examples, conclusion, and repository link.
+- `Report.docx`: introduction, UML, five annotated Clean Code examples, conclusion, and repository link.
 
 For the defense, explain startup order, the dependency on DVD playback, and failure cleanup.
